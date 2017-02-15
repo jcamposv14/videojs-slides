@@ -27,9 +27,11 @@ class VideoSlides {
   constructor(items) {
 
     this.slides = document.createElement('ul');
+    this.slidesContainer = document.createElement('div');
     this.slidesItems = items;
     this.oldTime = 0;
     this.appendSlider();
+    this.appendModes();
   }
   /**
   * AppendSlider function to append Slide list into VideoJS.
@@ -41,11 +43,39 @@ class VideoSlides {
   appendSlider() {
     // Get control bar element
     const controlBar = document.getElementsByClassName('vjs-control-bar')[0];
+    // const slidesContainer = document.createElement('div');
 
+    this.slidesContainer.appendChild(this.slides);
     // Add slide list className
     this.slides.className = 'video-slides';
-    controlBar.parentNode.insertBefore(this.slides, controlBar);
+    this.slidesContainer.className = 'video-slides-container';
+    controlBar.parentNode.insertBefore(this.slidesContainer, controlBar);
     this.appendSliderItem();
+  }
+  /**
+  * AppendMode function to append over modes to the  slides list into VideoJS.
+  *
+  * @return {void} doesn't return enething
+  * @function appendModes
+  *
+  */
+  appendModes() {
+    const overDiv = document.createElement('div');
+    const fullMode = document.createElement('a');
+    const halfMode = document.createElement('a');
+    const halfModeChild = document.createElement('span');
+    const fullModeCopy = document.createTextNode('Full Mode');
+    const halfModeCopy = document.createTextNode('Half Mode');
+
+    fullMode.className = 'video_full_mode full-screen-icon';
+    halfMode.className = 'video_half_mode half-screen-icon';
+    overDiv.className = 'video-mode';
+    fullMode.appendChild(fullModeCopy);
+    halfMode.appendChild(halfModeChild);
+    halfModeChild.appendChild(halfModeCopy);
+    overDiv.appendChild(fullMode);
+    overDiv.appendChild(halfMode);
+    this.slidesContainer.appendChild(overDiv);
   }
   /**
   * AppendSliderItem function to append SlideItem  into Slide List.

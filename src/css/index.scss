@@ -1,20 +1,48 @@
+@import "buttons";
 .video-js {
   &.vjs-slides {
     display: block;
   }
-  .video-slides {
+  .video-slides-container {
     display: flex;
+    width: 25%;
     z-index: 1;
-    POSITION: absolute;
+    position: absolute;
     right: 10px;
     bottom: 34px;
     list-style: none;
-    margin: 0;
-    padding: 0;
-    li {
-      display: none;
-      img {
-        max-width: 100%;
+    cursor: pointer;
+    &:hover {
+      .video-mode {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    .video-mode {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      text-align: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.5s, opacity 0.5s linear;
+      a {
+        margin: 0 5px;
+        top: 40%;
+      }
+    }
+    .video-slides {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        display: none;
+        img {
+          max-width: 100%;
+        }
       }
     }
   }
